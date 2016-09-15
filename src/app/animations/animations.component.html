@@ -1,0 +1,15 @@
+<div class="mdl-grid">
+  <md-card *ngFor="let datum of data"
+      [@flyInOut]="in"
+      (click)="datum.toggleState()"
+      class="mdl-cell mdl-cell--3-col">
+      {{datum.name}}
+  </md-card>
+    <!-- {{data | json}} -->
+   <!-- <button *ngFor="let datum of data"
+       [@datumState]="datum.state"
+       (click)="datum.toggleState()"
+       md-raised-button>
+       {{datum.name}}
+   </button> -->
+</div>

@@ -1,24 +1,32 @@
-import { BrowserModule }  from '@angular/platform-browser';
-import { NgModule }       from '@angular/core';
-import { FormsModule }    from '@angular/forms';
-import { HttpModule }     from '@angular/http';
-
-import { AppComponent }   from './app.component';
-import { DataService }    from './data.service';
+//Angular
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+//Material
+import { MdButtonModule } from '@angular2-material/button';
+import { MdCardModule } from '@angular2-material/card';
+// import { MdInputModule } from '@angular2-material/input';
+//App
+import { AppComponent } from './app.component';
+import { AnimationsComponent } from './animations/animations.component';
 import './core/rxjs-extensions';
+import './core/d3';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AnimationsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MdButtonModule,
+    MdCardModule,
+    // MdInputModule
   ],
-  providers: [
-    DataService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
