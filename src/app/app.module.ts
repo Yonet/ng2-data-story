@@ -1,22 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule }  from '@angular/platform-browser';
+import { NgModule }       from '@angular/core';
+import { FormsModule }    from '@angular/forms';
+import { HttpModule }     from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { CoreComponent } from './core/core.component';
+import { AppComponent }   from './app.component';
+import { DataService }    from './data.service';
+import './core/rxjs-extensions';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CoreComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
