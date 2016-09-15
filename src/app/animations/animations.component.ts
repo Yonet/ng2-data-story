@@ -30,6 +30,18 @@ import { Component,
           style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
         ]))
       ])
+    ]),
+    trigger('datumState', [
+      state('inactive', style({
+        backgroundColor: '#eee',
+        transform: 'scale(1)'
+      })),
+      state('active',   style({
+        backgroundColor: '#cfd8dc',
+        transform: 'scale(1.1)'
+      })),
+      transition('inactive => active', animate('100ms ease-in')),
+      transition('active => inactive', animate('100ms ease-out'))
     ])
   ]
 })
