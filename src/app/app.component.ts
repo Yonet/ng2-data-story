@@ -12,4 +12,7 @@ export class AppComponent {
   constructor(public dataService: DataService){
     this.dataService.getData().subscribe(data => this.data = data);
   }
+  addData (name) {
+    this.dataService.addData(name);
+  }
 }

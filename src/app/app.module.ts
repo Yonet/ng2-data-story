@@ -12,7 +12,7 @@ import { AppComponent }         from './app.component';
 import { AnimationsComponent }  from './animations/animations.component';
 import './core/rxjs-extensions';
 import './core/d3';
-
+import { SlidesModule }         from './slides/slides.module';
 import { DataService }          from './data.service';
 
 @NgModule({
@@ -27,6 +27,7 @@ import { DataService }          from './data.service';
     MdButtonModule,
     MdCardModule,
     // MdInputModule
+    SlidesModule
   ],
   providers: [
     DataService

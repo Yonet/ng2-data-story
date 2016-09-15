@@ -33,8 +33,10 @@ export class DataService {
     return Observable.of(data);
   }
 
-  addData() {
-    
+  addData(name) {
+    console.log("adding ", name)
+    let newData = new Data(name, Math.random() * 100);
+    data.push(newData);
   }
 
   getMouseEvent(){
