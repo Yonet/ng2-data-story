@@ -1,17 +1,19 @@
 //Angular
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule }        from '@angular/platform-browser';
+import { NgModule }             from '@angular/core';
+import { FormsModule }          from '@angular/forms';
+import { HttpModule }           from '@angular/http';
 //Material
-import { MdButtonModule } from '@angular2-material/button';
-import { MdCardModule } from '@angular2-material/card';
+import { MdButtonModule }       from '@angular2-material/button';
+import { MdCardModule }         from '@angular2-material/card';
 // import { MdInputModule } from '@angular2-material/input';
 //App
-import { AppComponent } from './app.component';
-import { AnimationsComponent } from './animations/animations.component';
+import { AppComponent }         from './app.component';
+import { AnimationsComponent }  from './animations/animations.component';
 import './core/rxjs-extensions';
 import './core/d3';
+
+import { DataService }          from './data.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import './core/d3';
     MdCardModule,
     // MdInputModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
