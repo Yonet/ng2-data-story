@@ -11,14 +11,16 @@ import { MdCardModule }         from '@angular2-material/card';
 import { AppComponent }         from './app.component';
 import { AnimationsComponent }  from './animations/animations.component';
 import './core/rxjs-extensions';
-import './core/d3';
+import * as d3 from './core/d3';
 import { SlidesModule }         from './slides/slides.module';
 import { DataService }          from './data.service';
+import { BarComponent }         from './bar/bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AnimationsComponent
+    AnimationsComponent,
+    BarComponent,
   ],
   imports: [
     BrowserModule,
