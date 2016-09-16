@@ -3,7 +3,8 @@
           (@flyInOut.start)="animationStarted($event)"
           (@flyInOut.done)="animationDone($event)"
           [@flyInOut]="'in'"
-          [@datumState]="datum.state"
+          [@datumState]="active"
+          [@refugeeCount]="grow"
           (click)="datum.toggleState()">
         {{datum.Country}}
         <span>{{datum["Refugee Count"]}}</span>
@@ -19,6 +20,7 @@
     <!-- {{data | json}} -->
    <!-- <button *ngFor="let datum of data"
        [@datumState]="datum.state"
+       [@grow]="datum.width"
        (click)="datum.toggleState()"
        md-raised-button>
        {{datum.name}}

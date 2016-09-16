@@ -58,7 +58,7 @@ export class DataService {
 
   getCsvData() {
     return observableCsv('../assets/refugees.csv')
-      .map(res => res = res[1])//this.parseCsvData(res))
+      .map(res => res[1])
   }
 
 }
