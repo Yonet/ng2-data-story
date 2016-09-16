@@ -5,7 +5,7 @@ import { Http,
          RequestOptions,
          RequestMethod,
          Response }         from '@angular/http';
-import { Observable }       from 'rxjs/Observable';
+import { Observable }       from 'rxjs/Rx';
 
 class Data {
   constructor(public name: string = "",
