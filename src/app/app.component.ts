@@ -26,36 +26,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getData().subscribe(data => this.data = data);
-    this.dataService.getCsvData()
-      .subscribe(data => {
-        this.refugeeData = data;
-        this.render();
-        // console.log("Csv data ", this.refugeeData);
-      })
+
   }
 
   addData (name) {
     this.dataService.addData(name);
   }
-
-  setUpGraph() {
-    this.dataService.createScales(this.refugeeData);
-    let max = d3.max(this.refugeeData, (d) => parseInt(d["Refugee Count"]))
-
-    this.xScale = d3.scaleLinear()
-      .range([0, 800])
-      .domain([0, max]);
-  }
-
-  render() {
-    this.setUpGraph();
-    d3.selectAll("div")
-      .data(this.refugeeData)
-      .enter().append()
-        .style('width', (d) => this.xScale(+d["Refugee Count"]))
-        // .style("color", (d) => d3.schemeDark2(d))
-    // console.log(this.refugeeData.columns);
-  }
-
 
 }
