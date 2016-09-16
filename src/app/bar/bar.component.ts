@@ -45,7 +45,7 @@ export class BarComponent implements OnInit {
     this.t = d3.transition()
       .duration(750)
       .ease(d3.easeLinear);
-    this.margin = { top: 20, right: 20, bottom: 40, left: 40 };
+    this.margin = { top: 40, right: 40, bottom: 40, left: 80 };
     this.width = window.innerWidth - this.margin.left - this.margin.right;
     this.height = 600 - this.margin.top - this.margin.bottom;
     this.xScale = d3.scaleBand()
