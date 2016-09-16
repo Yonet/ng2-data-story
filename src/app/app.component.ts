@@ -11,13 +11,24 @@ export class AppComponent {
   title = 'app works!';
   data: any;
   refugeeData: any;
+  keys: any = ["Refugee Count", "GDP", "Area (km2)", "Population", 'GDP per capita', 'GDP per Refugee'];
+  currentKey: string = "Refugee Count";
 
   constructor(public dataService: DataService){
     this.dataService.getData().subscribe(data => this.data = data);
     this.dataService.getCsvData()
-      .subscribe(res => this.refugeeData = res)
+      .subscribe((res) => {
+        this.refugeeData = res;
+        // this.keys = Object.keys(this.refugeeData[0]);
+      })
+
   }
   addData (name) {
     this.dataService.addData(name);
+  }
+
+  renderBar(key) {
+    console.log("key ", key)
+    this.currentKey = key;
   }
 }

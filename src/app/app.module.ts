@@ -15,12 +15,14 @@ import './core/d3';
 import { SlidesModule }         from './slides/slides.module';
 import { DataService }          from './data.service';
 import { BarComponent } from './bar/bar.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnimationsComponent,
-    BarComponent
+    BarComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,6 @@
           [style.color]='datum.color'
           (click)="datum.toggleState()">
         {{datum.Country}}
-        <span>{{datum["Refugee Count"]}}</span>
+        <span>{{datum["Refugee Count"] | number}}</span>
   </md-card>
 </div>

@@ -56,6 +56,13 @@ export class DataService {
     data.map((val, key) => {
       val.color = this.color(key);
       val["Refugee Count"] = +val["Refugee Count"];
+      val["Refugee per Population"] = +val["Refugee per Population"];
+      val["GDP"] = +val["GDP"];
+      val["GDP per capita"] = +val["GDP per capita"];
+      val["Refugee per Population"] = +val["Refugee per Population"];
+      val["Population"] = +val["Population"];
+      val["Area (km2)"] = +val["Area (km2)"];
+      console.log('area', val["Area"])
     })
     return data;
   }

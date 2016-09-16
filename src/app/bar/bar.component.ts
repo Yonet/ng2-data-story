@@ -12,6 +12,7 @@ import * as d3              from 'd3';
 })
 export class BarComponent implements OnInit {
   @Input() data: any;
+  @Input() key: string;
 
   private host;
   private svg;
@@ -52,11 +53,11 @@ export class BarComponent implements OnInit {
     this.yScale = d3.scaleLinear().range([this.height, 0]);
     this.xAxis = d3.axisBottom(this.xScale);
     this.yAxis = d3.axisLeft(this.yScale)
-        .ticks(10, "%");
+        .ticks(10);
   }
 
   buildSVG() {
-    this.host.html('');
+    // this.host.html('');
     this.svg = this.host.append('svg')
       .attr('width', this.width + this.margin.left + this.margin.right)
       .attr('height', this.height + this.margin.top + this.margin.bottom)
@@ -82,7 +83,7 @@ export class BarComponent implements OnInit {
 
   populate() {
 
-    this.yScale.domain([0,d3.max(this.data, (d) => d["Refugee Count"])])
+    this.yScale.domain([0,d3.max(this.data, (d) => d[this.key])])
 
     this.xScale.domain(this.data.map((d) => d["Country"]))
       .paddingInner(0.1);
@@ -93,8 +94,8 @@ export class BarComponent implements OnInit {
         .attr("class", "bar")
         .attr("x", (d) => this.xScale(d["Country"]))
         .attr("width", this.xScale.bandwidth())
-        .attr("y", (d) => this.yScale(d["Refugee Count"]))
-        .attr("height", (d) => (this.height - this.yScale(d["Refugee Count"])))
+        .attr("y", (d) => this.yScale(d[this.key]))
+        .attr("height", (d) => (this.height - this.yScale(d[this.key])))
         .transition(this.t)
         .style("fill", (d, i) => d.color)
   }
