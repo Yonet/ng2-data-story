@@ -5,6 +5,7 @@
           [@flyInOut]="'in'"
           [@datumState]="active"
           [@refugeeCount]="grow"
+          [style.color]='datum.color'
           (click)="datum.toggleState()">
         {{datum.Country}}
         <span>{{datum["Refugee Count"]}}</span>

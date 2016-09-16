@@ -30,6 +30,7 @@ let data = [
 ].map(datum => new Data(datum.name, datum.value))
 @Injectable()
 export class DataService {
+  public color = d3.scaleOrdinal(d3.schemeCategory20b);
 
   constructor() { }
 
@@ -58,7 +59,14 @@ export class DataService {
 
   getCsvData() {
     return observableCsv('../assets/refugees.csv')
-      .map(res => res[1])
+      .map(res => this.parseData(res[1]))
+  }
+
+  parseData(data){
+    data.map((val, key) => {
+      val.color = this.color(key);
+    })
+    return data;
   }
 
 }

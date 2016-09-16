@@ -73,8 +73,7 @@ export class BarComponent implements OnInit {
         .attr("x", (d) => this.xScale(d["Country"]))
         .attr("width", this.xScale.bandwidth())
         .attr("y", (d) => this.yScale(parseInt(d["Refugee Count"])))
-        .attr("height", (d) => (this.height - this.yScale(parseInt(d["Refugee Count"]))));
-
+        .attr("height", (d) => (this.height - this.yScale(parseInt(d["Refugee Count"]))))
+        .style("fill", (d, i) => d.color)
   }
-
 }
