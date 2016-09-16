@@ -14,7 +14,6 @@ class Data {
   constructor(public name: string = "",
               public value: number = 0,
               public state = 'inactive') {
-
   }
 
   toggleState() {
@@ -40,7 +39,6 @@ export class DataService {
   }
 
   addData(name) {
-    console.log("adding ", name)
     let newData = new Data(name, Math.random() * 100);
     data.push(newData);
   }
@@ -56,7 +54,6 @@ export class DataService {
 
   parseData(data){
     data.map((val, key) => {
-      console.log('b val',val)
       val.color = this.color(key);
       val["Refugee Count"] = +val["Refugee Count"];
     })

@@ -81,14 +81,12 @@ export class BarComponent implements OnInit {
   }
 
   populate() {
-    console.log(this.data.length)
 
     this.yScale.domain([0,d3.max(this.data, (d) => d["Refugee Count"])])
 
-
     this.xScale.domain(this.data.map((d) => d["Country"]))
-      .paddingInner(0.1);;
-    // console.log('x, y', this.xScale(4), this.yScale(4))
+      .paddingInner(0.1);
+
     this.svg.append('g').selectAll('.bar')
       .data(this.data)
       .enter().append("rect")
