@@ -30,7 +30,7 @@ import { DataService }          from './data.service';
     SlidesModule
   ],
   providers: [
-    DataService
+    DataService,
   ],
   bootstrap: [AppComponent]
 })
