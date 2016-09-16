@@ -1,5 +1,7 @@
 import { Component }    from '@angular/core';
 import { DataService }  from './data.service';
+import { Observable }   from 'rxjs/Rx';
+import './core/rxjs-extensions';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,11 @@ import { DataService }  from './data.service';
 export class AppComponent {
   title = 'app works!';
   data: any;
+  refugeeData: any;
   constructor(public dataService: DataService){
     this.dataService.getData().subscribe(data => this.data = data);
+    this.dataService.getCsvData()
+      .subscribe(res => this.refugeeData = res)
   }
   addData (name) {
     this.dataService.addData(name);

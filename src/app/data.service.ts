@@ -8,6 +8,8 @@ import { Http,
 import { Observable }       from 'rxjs/Rx';
 import * as d3              from 'd3';
 
+var observableCsv = Observable.bindCallback(d3.csv);
+
 class Data {
   constructor(public name: string = "",
               public value: number = 0,
@@ -44,6 +46,19 @@ export class DataService {
 
   getMouseEvent(){
 
+  }
+
+  xScale(num) {
+    let xScale = d3.scaleLinear()
+      .range([0, 800])
+      .domain([0, 10000])
+
+    return xScale(num);
+  }
+
+  getCsvData() {
+    return observableCsv('../assets/refugees.csv')
+      .map(res => res = res[1])//this.parseCsvData(res))
   }
 
 }
