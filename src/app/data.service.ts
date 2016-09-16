@@ -49,14 +49,6 @@ export class DataService {
 
   }
 
-  xScale(num) {
-    let xScale = d3.scaleLinear()
-      .range([0, 800])
-      .domain([0, 10000])
-
-    return xScale(num);
-  }
-
   getCsvData() {
     return observableCsv('../assets/refugees.csv')
       .map(res => this.parseData(res[1]))
@@ -64,7 +56,9 @@ export class DataService {
 
   parseData(data){
     data.map((val, key) => {
+      console.log('b val',val)
       val.color = this.color(key);
+      val["Refugee Count"] = +val["Refugee Count"];
     })
     return data;
   }

@@ -22,6 +22,7 @@ export class BarComponent implements OnInit {
   private yScale;
   private xAxis;
   private yAxis;
+  private t;
   private htmlElement: HTMLElement;
 
   constructor(private element: ElementRef) {
@@ -40,12 +41,18 @@ export class BarComponent implements OnInit {
   }
 
   setup() {
+    this.t = d3.transition()
+      .duration(750)
+      .ease(d3.easeLinear);
     this.margin = { top: 20, right: 20, bottom: 40, left: 40 };
-    this.width = 1000 - this.margin.left - this.margin.right;
+    this.width = window.innerWidth - this.margin.left - this.margin.right;
     this.height = 600 - this.margin.top - this.margin.bottom;
     this.xScale = d3.scaleBand()
     			.range([0, this.width], .1);
     this.yScale = d3.scaleLinear().range([this.height, 0]);
+    this.xAxis = d3.axisBottom(this.xScale);
+    this.yAxis = d3.axisLeft(this.yScale)
+        .ticks(10, "%");
   }
 
   buildSVG() {
@@ -55,12 +62,28 @@ export class BarComponent implements OnInit {
       .attr('height', this.height + this.margin.top + this.margin.bottom)
       .append('g')
       .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+
+    this.svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + this.height + ")")
+          .call(this.xAxis);
+
+    this.svg.append("g")
+        .attr("class", "y axis")
+        .call(this.yAxis)
+      .append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Refugee Count");
   }
 
   populate() {
     console.log(this.data.length)
 
-    this.yScale.domain([0,d3.max(this.data, (d: any) => parseInt(d["Refugee Count"]))])
+    this.yScale.domain([0,d3.max(this.data, (d) => d["Refugee Count"])])
 
 
     this.xScale.domain(this.data.map((d) => d["Country"]))
@@ -72,8 +95,9 @@ export class BarComponent implements OnInit {
         .attr("class", "bar")
         .attr("x", (d) => this.xScale(d["Country"]))
         .attr("width", this.xScale.bandwidth())
-        .attr("y", (d) => this.yScale(parseInt(d["Refugee Count"])))
-        .attr("height", (d) => (this.height - this.yScale(parseInt(d["Refugee Count"]))))
+        .attr("y", (d) => this.yScale(d["Refugee Count"]))
+        .attr("height", (d) => (this.height - this.yScale(d["Refugee Count"])))
+        .transition(this.t)
         .style("fill", (d, i) => d.color)
   }
 }
