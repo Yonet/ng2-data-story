@@ -6,11 +6,13 @@ import { Http,
          RequestMethod,
          Response }         from '@angular/http';
 import { Observable }       from 'rxjs/Rx';
+import * as d3              from 'd3';
 
 class Data {
   constructor(public name: string = "",
               public value: number = 0,
               public state = 'inactive') {
+
   }
 
   toggleState() {
@@ -30,6 +32,7 @@ export class DataService {
   constructor() { }
 
   getData() {
+    console.log("d3", d3)
     return Observable.of(data);
   }
 
