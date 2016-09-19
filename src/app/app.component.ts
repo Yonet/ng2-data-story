@@ -16,7 +16,7 @@ export class AppComponent {
 
   constructor(public dataService: DataService){
     this.dataService.getData().subscribe(data => this.data = data);
-    this.dataService.getCsvData()
+    this.dataService.getCsvData("../assets/refugees.csv")
       .subscribe((res) => {
         this.refugeeData = res;
         // this.keys = Object.keys(this.refugeeData[0]);

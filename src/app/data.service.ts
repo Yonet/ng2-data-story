@@ -47,8 +47,8 @@ export class DataService {
 
   }
 
-  getCsvData() {
-    return observableCsv('../assets/refugees.csv')
+  getCsvData(url:string) {
+    return observableCsv(url)
       .map(res => this.parseData(res[1]))
   }
 
