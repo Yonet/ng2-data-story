@@ -12,8 +12,8 @@ var observableCsv = Observable.bindCallback(d3.csv);
 
 class Data {
   constructor(public name: string = "",
-              public value: number = 0,
-              public state = 'inactive') {
+    public value: number = 0,
+    public state = 'inactive') {
   }
 
   toggleState() {
@@ -23,19 +23,30 @@ class Data {
 }
 
 let data = [
-  {name: "first", value: 12},
-  {name: "second", value: 42},
-  {name: "third", value: 33}
-].map(datum => new Data(datum.name, datum.value))
+  { name: "first", value: 12 },
+  { name: "second", value: 42 },
+  { name: "third", value: 33 }
+].map(datum => new Data(datum.name, datum.value));
+
 @Injectable()
 export class DataService {
   public color = d3.scaleOrdinal(d3.schemeCategory20b);
-
-  constructor() { }
+  // http;
+  constructor(private http: Http) { }
 
   getData() {
-    console.log("d3", d3)
     return Observable.of(data);
+  }
+
+  getJsonData(url) {
+    return this.http.get(url)
+      .map((res) => {
+        let json = res.json();
+        let data = json.data;
+        let columns = json.meta.view.columns;
+        let result = this.parseHomelessData(data, columns);
+        return result;
+      })
   }
 
   addData(name) {
@@ -43,16 +54,16 @@ export class DataService {
     data.push(newData);
   }
 
-  getMouseEvent(){
+  getMouseEvent() {
 
   }
 
-  getCsvData(url:string) {
+  getCsvData(url: string) {
     return observableCsv(url)
       .map(res => this.parseData(res[1]))
   }
 
-  parseData(data){
+  parseData(data) {
     data.map((val, key) => {
       val.color = this.color(key);
       val["Refugee Count"] = +val["Refugee Count"];
@@ -62,8 +73,21 @@ export class DataService {
       val["Refugee per Population"] = +val["Refugee per Population"];
       val["Population"] = +val["Population"];
       val["Area (km2)"] = +val["Area (km2)"];
-      console.log('area', val["Area"])
     })
+    return data;
+  }
+
+  parseHomelessData (data, columns){
+    data.map((val, key) => {
+      let datum = {}
+      val.forEach((item, i) => {
+        if(columns[i].name === "Homeless Estimates" || columns[i].name === "Year") { item = parseInt(item)}
+        datum[columns[i].name] = item;
+      })
+      data[key] = datum;
+
+    })
+    console.log('data', data);
     return data;
   }
 

@@ -1,5 +1,12 @@
 <h2>Refugees of Syrian Civil War</h2>
-<app-bar [data]="refugeeData" [key]="currentKey"></app-bar>
+<app-slides></app-slides>
+<app-bar [data]="refugeeData" [key]="currentKey" [xKey]='"Country"'></app-bar>
+<!-- <p *ngFor="let homeless of homelessData"> -->
+  <!-- {{homeless | json}} -->
+<!-- </p> -->
+<!-- <app-bar [data]="homelessData" [key]="homelessKey" [xKey]='"Year"'></app-bar> -->
+
+
 <button
   *ngFor="let key of keys"
   type="button" name="button"

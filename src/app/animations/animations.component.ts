@@ -32,10 +32,10 @@ export class AnimationsComponent implements OnInit {
 
   }
   animationStarted(event: AnimationTransitionEvent) {
-    console.warn('Animation started: ', event);
+    // console.warn('Animation started: ', event);
   }
 
   animationDone(event: AnimationTransitionEvent) {
-    console.warn('Animation done: ', event);
+    // console.warn('Animation done: ', event);
   }
 }

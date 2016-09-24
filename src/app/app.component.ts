@@ -13,6 +13,8 @@ export class AppComponent {
   refugeeData: any;
   keys: any = ["Refugee Count", "GDP", "Area (km2)", "Population", 'GDP per capita', 'GDP per Refugee'];
   currentKey: string = "Refugee Count";
+  homelessData: any;
+  homelessKey: string;
 
   constructor(public dataService: DataService){
     this.dataService.getData().subscribe(data => this.data = data);
@@ -20,6 +22,11 @@ export class AppComponent {
       .subscribe((res) => {
         this.refugeeData = res;
         // this.keys = Object.keys(this.refugeeData[0]);
+      });
+    this.dataService.getJsonData('../assets/datasets/homelessPopulationByYearNYC.json')
+      .subscribe((res) => {
+        this.homelessData = res;
+        this.homelessKey = 'Homeless Estimates';
       })
 
   }

@@ -13,6 +13,7 @@ import * as d3              from 'd3';
 export class BarComponent implements OnInit {
   @Input() data: any;
   @Input() key: string;
+  @Input() xKey: string;
 
   private host;
   private svg;
@@ -82,17 +83,17 @@ export class BarComponent implements OnInit {
   }
 
   populate() {
-
+    console.log('.key', this.key)
     this.yScale.domain([0,d3.max(this.data, (d) => d[this.key])])
 
-    this.xScale.domain(this.data.map((d) => d["Country"]))
+    this.xScale.domain(this.data.map((d) => d[this.xKey]))
       .paddingInner(0.1);
 
     this.svg.append('g').selectAll('.bar')
       .data(this.data)
       .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", (d) => this.xScale(d["Country"]))
+        .attr("x", (d) => this.xScale(d[this.xKey]))
         .attr("width", this.xScale.bandwidth())
         .attr("y", (d) => this.yScale(d[this.key]))
         .attr("height", (d) => (this.height - this.yScale(d[this.key])))
