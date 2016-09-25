@@ -87,7 +87,7 @@ export class DataService {
       data[key] = datum;
 
     })
-    console.log('data', data);
+    // console.log('data', data);
     return data;
   }
 

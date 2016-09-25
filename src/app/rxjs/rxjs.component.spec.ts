@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { TestComponent } from './test.component';
+import { RxjsComponent } from './rxjs.component';
 
-describe('Component: Test', () => {
+describe('Component: Rxjs', () => {
   it('should create an instance', () => {
-    let component = new TestComponent();
+    let component = new RxjsComponent();
     expect(component).toBeTruthy();
   });
 });

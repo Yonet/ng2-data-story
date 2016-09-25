@@ -8,7 +8,7 @@ import * as d3              from 'd3';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
-  styleUrls: ['./bar.component.sass']
+  styleUrls: ['./bar.component.scss']
 })
 export class BarComponent implements OnInit {
   @Input() data: any;

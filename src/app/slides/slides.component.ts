@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   selector: 'app-slides',
   // template: '<router-outlet></router-outlet>',
   templateUrl: './slides.component.html',
-  styleUrls: ['./slides.component.sass']
+  styleUrls: ['./slides.component.scss']
 })
 export class SlidesComponent implements OnInit {
 

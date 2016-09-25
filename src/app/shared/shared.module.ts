@@ -8,10 +8,10 @@ import { RouterModule }         from '@angular/router';
 import { MdButtonModule }       from '@angular2-material/button';
 import { MdCardModule }         from '@angular2-material/card';
 import { MdCoreModule }         from '@angular2-material/core';
-import { MdGridListModule }     from '@angular2-material/grid-list';
+// import { MdGridListModule }     from '@angular2-material/grid-list';
 import { MdInputModule }        from '@angular2-material/input';
 import { MdListModule }         from '@angular2-material/list';
-import { MdToolbarModule }      from '@angular2-material/toolbar';
+// import { MdToolbarModule }      from '@angular2-material/toolbar';
 
 @NgModule({
   imports: [
@@ -22,11 +22,10 @@ import { MdToolbarModule }      from '@angular2-material/toolbar';
     MdButtonModule,
     MdCardModule,
     MdCoreModule,
-    MdGridListModule,
+    // MdGridListModule,
     MdInputModule,
     MdListModule,
-    MdGridListModule,
-    MdToolbarModule,
+    // MdToolbarModule,
   ],
   exports: [
     CommonModule,
@@ -36,11 +35,10 @@ import { MdToolbarModule }      from '@angular2-material/toolbar';
     MdButtonModule,
     MdCardModule,
     MdCoreModule,
-    MdGridListModule,
+    // MdGridListModule,
     MdInputModule,
     MdListModule,
-    MdGridListModule,
-    MdToolbarModule,
+    // MdToolbarModule,
   ],
   declarations: []
 })

@@ -1,17 +1,17 @@
-<h2>Refugees of Syrian Civil War</h2>
-<app-slides></app-slides>
-<app-bar [data]="refugeeData" [key]="currentKey" [xKey]='"Country"'></app-bar>
+<!-- <h2>Refugees of Syrian Civil War</h2> -->
+<!-- <app-slides></app-slides> -->
+<!-- <app-bar [data]="refugeeData" [key]="currentKey" [xKey]='"Country"'></app-bar> -->
 <!-- <p *ngFor="let homeless of homelessData"> -->
   <!-- {{homeless | json}} -->
 <!-- </p> -->
 <!-- <app-bar [data]="homelessData" [key]="homelessKey" [xKey]='"Year"'></app-bar> -->
 
-
-<button
+<router-outlet></router-outlet>
+<!-- <button
   *ngFor="let key of keys"
   type="button" name="button"
   (click)="renderBar(key)"
-  md-button>{{key}}</button>
+  md-button>{{key}}</button>  -->
 <!-- {{refugeeData | json}} -->
-<app-animations [data]="refugeeData">
-</app-animations>
+<!-- <app-animations [data]="refugeeData">
+</app-animations> -->

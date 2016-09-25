@@ -16,7 +16,7 @@ import { Observable }   from 'rxjs/Rx';
 @Component({
   selector: 'app-animations',
   templateUrl: './animations.component.html',
-  styleUrls: ['./animations.component.sass'],
+  styleUrls: ['./animations.component.scss'],
   animations: [
     Animations.flyInOut,
     Animations.datumState,
