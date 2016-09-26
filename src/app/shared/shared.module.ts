@@ -13,6 +13,8 @@ import { MdInputModule }        from '@angular2-material/input';
 import { MdListModule }         from '@angular2-material/list';
 // import { MdToolbarModule }      from '@angular2-material/toolbar';
 
+import { ListButtonsComponent } from './list-buttons/list-buttons.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -38,8 +40,11 @@ import { MdListModule }         from '@angular2-material/list';
     // MdGridListModule,
     MdInputModule,
     MdListModule,
+    ListButtonsComponent
     // MdToolbarModule,
   ],
-  declarations: []
+  declarations: [
+    ListButtonsComponent
+  ]
 })
 export class SharedModule { }

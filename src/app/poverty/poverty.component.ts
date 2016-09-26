@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./poverty.component.scss']
 })
 export class PovertyComponent implements OnInit {
+  private data: any;
+  private buttons: any;
 
-  constructor() { }
+  constructor() {
+    this.buttons = [1, 2, 3];
+    this.data = [1, 2, 3];
+  }
 
   ngOnInit() {
   }
