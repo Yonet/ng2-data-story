@@ -1,7 +1,7 @@
 import { Component,
          OnInit }         from '@angular/core';
 import { Observable }     from "rxjs/Observable";
-
+import * as d3            from 'd3';
 
 const click$ = Observable.fromEvent(document,'click');
 
@@ -23,9 +23,15 @@ export class RxjsComponent implements OnInit {
   ngOnInit() {
   }
   clicked() {
+    let circle = d3.select('circle');
+    console.log('circle is ', circle);
     combined$.subscribe(
-        combined => console.log(combined[0])
-    );
+        (combined) => {
+          console.log(combined[0].clientX);
+          console.log('circle is ', circle);
+          circle.attr('transform', 'translate(' + combined[0].clientX + ',' + combined[0].clientY + ')' );
+          // return;
+        })
   }
 
 }
