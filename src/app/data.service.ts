@@ -6,9 +6,21 @@ import { Http,
          RequestMethod,
          Response }         from '@angular/http';
 import { Observable }       from 'rxjs/Rx';
-import * as d3              from 'd3';
+// import * as d3              from 'd3';
+import { D3Service,
+         D3,
+         D3DragEvent,
+         D3ZoomEvent,
+         DSV,
+         ScaleOrdinal,
+         Axis,
+         BrushBehavior,
+         BrushSelection,
+         D3BrushEvent,
+         ScaleLinear,
+         Transition,
+         Selection }        from 'd3-ng2-service';
 
-var observableCsv = Observable.bindCallback(d3.csv);
 
 class Data {
   constructor(public name: string = "",
@@ -30,9 +42,15 @@ let data = [
 
 @Injectable()
 export class DataService {
-  public color = d3.scaleOrdinal(d3.schemeCategory20b);
+  private d3: D3;
+  public color: ScaleOrdinal<number, string>;
+  public observableCsv;
   // http;
-  constructor(private http: Http) { }
+  constructor(private http: Http, private d3Service: D3Service ) {
+    this.d3 = d3Service.getD3();
+    let color = this.d3.scaleOrdinal(this.d3.schemeCategory20b);
+    this.observableCsv = Observable.bindCallback(this.d3.csvParse);
+  }
 
   getData() {
     return Observable.of(data);
@@ -59,7 +77,7 @@ export class DataService {
   }
 
   getCsvData(url: string) {
-    return observableCsv(url)
+    return this.observableCsv(url)
       .map(res => this.parseData(res[1]))
   }
 

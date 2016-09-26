@@ -2,7 +2,19 @@ import { Component,
          OnInit }     from '@angular/core';
 import { Observable}  from "rxjs/Observable";
 
-import * as d3        from 'd3';
+// import { D3Service,
+//          D3,
+//          D3DragEvent,
+//          D3ZoomEvent,
+//          DSV,
+//          ScaleOrdinal,
+//          Axis,
+//          BrushBehavior,
+//          BrushSelection,
+//          D3BrushEvent,
+//          ScaleLinear,
+//          Transition,
+//          Selection }        from 'd3-ng2-service';
 
 const t =`ngOnInit() {
   combined$.subscribe(

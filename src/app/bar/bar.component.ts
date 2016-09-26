@@ -3,8 +3,19 @@ import { Component,
          ElementRef,
          OnInit }           from '@angular/core';
 
-import * as d3              from 'd3';
-
+import { D3Service,
+        D3,
+        D3DragEvent,
+        D3ZoomEvent,
+        Axis,
+        BrushBehavior,
+        BrushSelection,
+        D3BrushEvent,
+        ScaleLinear,
+        ScaleOrdinal,
+        Transition,
+        Selection }         from 'd3-ng2-service';
+var d3;
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
@@ -26,13 +37,18 @@ export class BarComponent implements OnInit {
   private yAxis;
   private t;
   private htmlElement: HTMLElement;
+  public d3: D3;
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private d3Service: D3Service) {
     this.htmlElement = this.element.nativeElement;
-    this.host = d3.select(this.element.nativeElement);
+    this.d3 = d3Service.getD3();
+    this.host = this.d3.select(this.element.nativeElement);
+
+
   }
 
   ngOnInit() {
+    d3 = this.d3;
   }
 
   ngOnChanges(): void {
@@ -43,7 +59,7 @@ export class BarComponent implements OnInit {
   }
 
   setup() {
-    this.t = d3.transition()
+    let t: Transition<SVGSVGElement, any, null, undefined> = d3.transition()
       .duration(750)
       .ease(d3.easeLinear);
     this.margin = { top: 40, right: 40, bottom: 40, left: 80 };

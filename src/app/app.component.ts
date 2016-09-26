@@ -16,6 +16,7 @@ export class AppComponent {
   homelessData: any;
   homelessKey: string;
 
+
   constructor(public dataService: DataService){
     this.dataService.getData().subscribe(data => this.data = data);
     this.dataService.getCsvData("../assets/refugees.csv")
@@ -29,13 +30,13 @@ export class AppComponent {
         this.homelessKey = 'Homeless Estimates';
       })
 
+
   }
   addData (name) {
     this.dataService.addData(name);
   }
 
   renderBar(key) {
-    console.log("key ", key)
     this.currentKey = key;
   }
 }

@@ -1,7 +1,19 @@
 import { Component,
          OnInit }         from '@angular/core';
 import { Observable }     from "rxjs/Observable";
-import * as d3            from 'd3';
+import { D3Service,
+         D3,
+         D3DragEvent,
+         D3ZoomEvent,
+         DSV,
+         ScaleOrdinal,
+         Axis,
+         BrushBehavior,
+         BrushSelection,
+         D3BrushEvent,
+         ScaleLinear,
+         Transition,
+         Selection }        from 'd3-ng2-service';
 
 const click$ = Observable.fromEvent(document,'click');
 
@@ -18,12 +30,15 @@ const combined$ = Observable.combineLatest(mouse$, click$);
 })
 export class RxjsComponent implements OnInit {
   button;
-  constructor() { }
+  private d3: D3;
+  constructor(private d3Service: D3Service) {
+    this.d3 = d3Service.getD3();
+  }
 
   ngOnInit() {
   }
   clicked() {
-    let circle = d3.select('circle');
+    let circle = this.d3.select('circle');
     console.log('circle is ', circle);
     combined$.subscribe(
         (combined) => {
