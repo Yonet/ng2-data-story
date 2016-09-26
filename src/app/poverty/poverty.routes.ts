@@ -4,7 +4,8 @@ import { PovertyComponent  }       from './poverty.component';
 
 export const PovertyRoutes: Route[] = [
   {
-    path: 'poverty',
+    // path: 'poverty',
+    path: '',
     component: PovertyComponent
   },
 

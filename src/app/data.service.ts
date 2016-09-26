@@ -21,6 +21,7 @@ import { D3Service,
          Transition,
          Selection }        from 'd3-ng2-service';
 
+var d3, observableCsv;
 
 class Data {
   constructor(public name: string = "",
@@ -29,7 +30,6 @@ class Data {
   }
 
   toggleState() {
-    console.log("toogleing state");
     this.state = (this.state === 'active' ? 'inactive' : 'active');
   }
 }
@@ -44,12 +44,15 @@ let data = [
 export class DataService {
   private d3: D3;
   public color: ScaleOrdinal<number, string>;
-  public observableCsv;
+  // public observableCsv;
   // http;
   constructor(private http: Http, private d3Service: D3Service ) {
     this.d3 = d3Service.getD3();
+    d3 = this.d3;
     let color = this.d3.scaleOrdinal(this.d3.schemeCategory20b);
-    this.observableCsv = Observable.bindCallback(this.d3.csvParse);
+    observableCsv = Observable.bindCallback(d3.csvParse);
+
+    console.log('observableCsv ', d3.csvParse)//observableCsv("../../assets/refugees.csv").subscribe(res => console.log(res)))
   }
 
   getData() {
@@ -72,12 +75,21 @@ export class DataService {
     data.push(newData);
   }
 
-  getMouseEvent() {
+  getPovertyData() {
+    let observablePoverty = Observable.bindCallback(this.d3.csvParse);
+    console.log('getting data');
+    return observablePoverty("../../assets/refugees.csv")
+      .map(res => this.parsePovertyData(res[1]))
+  }
 
+  parsePovertyData(data) {
+    console.log('Poverty data is ', data)
   }
 
   getCsvData(url: string) {
-    return this.observableCsv(url)
+
+    console.log('getting csv data');
+    return observableCsv(url)
       .map(res => this.parseData(res[1]))
   }
 

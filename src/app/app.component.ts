@@ -1,6 +1,7 @@
 import { Component }    from '@angular/core';
-import { DataService }  from './data.service';
 import { Observable }   from 'rxjs/Rx';
+
+import { DataService }  from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,15 @@ export class AppComponent {
   homelessKey: string;
 
 
-  constructor(public dataService: DataService){}
+  constructor(public dataService: DataService){
   //   this.dataService.getData().subscribe(data => this.data = data);
-  //   this.dataService.getCsvData("../assets/refugees.csv")
-  //     .subscribe((res) => {
-  //       this.refugeeData = res;
-  //       // this.keys = Object.keys(this.refugeeData[0]);
-  //     });
+    this.dataService.getCsvData("../assets/refugees.csv")
+      .subscribe((res) => {
+        this.refugeeData = res;
+        console.log('this.refugeeData', this.refugeeData);
+        // this.keys = Object.keys(this.refugeeData[0]);
+      });
+    }
   //   this.dataService.getJsonData('../assets/datasets/homelessPopulationByYearNYC.json')
   //     .subscribe((res) => {
   //       this.homelessData = res;

@@ -19,7 +19,6 @@ import { SlidesModule }         from './slides/slides.module';
 import { DataService }          from './data.service';
 import { BarComponent }         from './bar/bar.component';
 import { PieComponent }         from './pie/pie.component';
-import { ListButtonsComponent } from './list-buttons/list-buttons.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,6 @@ import { ListButtonsComponent } from './list-buttons/list-buttons.component';
     AnimationsComponent,
     BarComponent,
     PieComponent,
-    ListButtonsComponent,
   ],
   imports: [
     BrowserModule,

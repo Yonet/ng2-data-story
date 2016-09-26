@@ -5,7 +5,7 @@ import { PovertyRoutes }  from './poverty/poverty.routes';
 import { RefugeesRoutes } from './refugees/refugees.routes';
 
 export const routes: Routes = [
-  ...RxjsRoutes,
   ...PovertyRoutes,
+  ...RxjsRoutes,
   ...RefugeesRoutes
 ];
