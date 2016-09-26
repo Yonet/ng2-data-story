@@ -9,6 +9,8 @@ import { D3Service } from 'd3-ng2-service';
 //App
 import { SharedModule }         from './shared/shared.module';
 import { RxjsModule }           from './rxjs/rxjs.module';
+import { PovertyModule }        from './poverty/poverty.module';
+import { RefugeesModule }       from './refugees/refugees.module';
 import { routes }               from './app.routes';
 import { AppComponent }         from './app.component';
 import { AnimationsComponent }  from './animations/animations.component';
@@ -31,6 +33,8 @@ import { PieComponent }         from './pie/pie.component';
     RxjsModule,
     SharedModule,
     SlidesModule,
+    PovertyModule,
+    RefugeesModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

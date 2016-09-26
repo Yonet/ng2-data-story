@@ -8,7 +8,6 @@ import { Observable }   from 'rxjs/Rx';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
   data: any;
   refugeeData: any;
   keys: any = ["Refugee Count", "GDP", "Area (km2)", "Population", 'GDP per capita', 'GDP per Refugee'];
