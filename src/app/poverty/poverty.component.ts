@@ -23,9 +23,8 @@ export class PovertyComponent implements OnInit {
   private dec$: any;
   private count$: any;
   private current: number;
+  private people: any;
   constructor(public dataService: DataService) {
-    this.dataService.getPovertyData()
-      .subscribe((d) => console.log('d ', d));
 
     this.dataService.getData()
       .subscribe((res) => {
@@ -40,7 +39,8 @@ export class PovertyComponent implements OnInit {
       .subscribe((res) => {
         this.guessData = res;
       })
-
+    let peopleSource = Observable.range(0, 10).toArray();
+    peopleSource.subscribe((p) => this.people = p)
   }
 
   ngOnInit() {

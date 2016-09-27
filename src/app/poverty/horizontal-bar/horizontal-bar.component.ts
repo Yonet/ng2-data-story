@@ -20,7 +20,7 @@ import { Animations }   from '../../animations';
 })
 export class HorizontalBarComponent implements OnChanges {
   @Input() data: any;
-  @Input() title: string;
+  @Input() people: any;
 
   constructor(private element: ElementRef) {
 

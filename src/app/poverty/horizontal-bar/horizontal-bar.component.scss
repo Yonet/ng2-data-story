@@ -1,10 +1,19 @@
 md-card {
   float: left;
-  height: 50px;
+  height: 80px;
   padding: 0;
 }
 
 .mdl-grid {
   width: 100%;
   padding-top: 12px;
+}
+
+
+img {
+  width: 5%;
+  padding: 2%;
+  opacity: 0.5;
+  // height: 50%;
+  // background-color: #FCF4D9;
 }

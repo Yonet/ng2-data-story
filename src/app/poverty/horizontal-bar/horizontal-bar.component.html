@@ -5,4 +5,5 @@
         [style.backgroundColor]='datum.color'
         [style.width]='datum.value'
         (click)="datum.toggleState()">
+        <img src="../../assets/man.png" alt="" *ngFor="let man of people"/>
 </md-card>

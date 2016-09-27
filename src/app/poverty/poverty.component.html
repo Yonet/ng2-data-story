@@ -6,26 +6,32 @@
 
   <div class="mdl-grid" *ngIf="current>3">
     <md-card-title>Actual Distributition of Wealth</md-card-title>
-    <app-horizontal-bar [data]="data">
+    <app-horizontal-bar [data]="data"  [people]="people">
+      <img src="../assets/man.png" alt="" *ngFor="let man of people"/>
     </app-horizontal-bar>
   </div>
 
   <div class="mdl-grid" *ngIf="current>2">
     <md-card-title>What Americans Think it is</md-card-title>
-    <app-horizontal-bar [data]="guessData">{{guessData| json}}
+    <app-horizontal-bar [data]="guessData" [people]="people">{{guessData| json}}
     </app-horizontal-bar>
+    <!-- <img src="../assets/man.png" alt="" *ngFor="let man of people"/> -->
   </div>
 
   <div class="mdl-grid" *ngIf="current > 1">
     <md-card-title>What Americans want</md-card-title>
-    <app-horizontal-bar [data]="idealData" *ngIf="current>1">
+    <app-horizontal-bar [data]="idealData" [people]="people">
     </app-horizontal-bar>
+
   </div>
 
   <div class="mdl-grid" *ngIf="current > 0">
     <md-card-title>Percentile</md-card-title>
     <md-card *ngFor="let datum of data" [@flyInOut]="'in'" [@datumState]="active" [@income]="grow" [style.backgroundColor]='datum.color' (click)="datum.toggleState()">
       <p>20%</p>
+      <img src="../assets/man.png" alt="" *ngFor="let man of people"/>
+    <!-- </div> -->
     </md-card>
+    <!-- <img src="../assets/man.png" alt="" *ngFor="let man of people"/> -->
   </div>
 </md-card-content>
