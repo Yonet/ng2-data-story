@@ -21,7 +21,11 @@ import { D3Service,
          Transition,
          Selection }        from 'd3-ng2-service';
 
-var d3, observableCsv;
+import * as req from 'd3-request';
+
+var d3: D3;
+var observableCsv;
+const observablePoverty = Observable.bindCallback(req.csv);
 
 class Data {
   constructor(public name: string = "",
@@ -42,22 +46,23 @@ let data = [
 
 @Injectable()
 export class DataService {
-  private d3: D3;
-  public color: ScaleOrdinal<number, string>;
+  // private d3:
+  public color;
   // public observableCsv;
   // http;
   constructor(private http: Http, private d3Service: D3Service ) {
-    this.d3 = d3Service.getD3();
-    d3 = this.d3;
-    let color = this.d3.scaleOrdinal(this.d3.schemeCategory20b);
-    observableCsv = Observable.bindCallback(d3.csvParse);
+    d3 = d3Service.getD3();
 
-    console.log('observableCsv ', d3.csvParse)//observableCsv("../../assets/refugees.csv").subscribe(res => console.log(res)))
+    this.color = d3.scaleOrdinal(d3.schemeCategory20b);
+    observableCsv = Observable.bindCallback(req.csv);
+
   }
 
   getData() {
     return Observable.of(data);
   }
+
+
 
   getJsonData(url) {
     return this.http.get(url)
@@ -70,25 +75,19 @@ export class DataService {
       })
   }
 
-  addData(name) {
-    let newData = new Data(name, Math.random() * 100);
-    data.push(newData);
-  }
+
 
   getPovertyData() {
-    let observablePoverty = Observable.bindCallback(this.d3.csvParse);
-    console.log('getting data');
-    return observablePoverty("../../assets/refugees.csv")
+    return observablePoverty("../assets/povertyData.csv")
       .map(res => this.parsePovertyData(res[1]))
   }
 
   parsePovertyData(data) {
-    console.log('Poverty data is ', data)
   }
 
-  getCsvData(url: string) {
 
-    console.log('getting csv data');
+
+  getCsvData(url: string) {
     return observableCsv(url)
       .map(res => this.parseData(res[1]))
   }
@@ -117,8 +116,12 @@ export class DataService {
       data[key] = datum;
 
     })
-    // console.log('data', data);
     return data;
+  }
+
+  addData(name) {
+    let newData = new Data(name, Math.random() * 100);
+    data.push(newData);
   }
 
 }
