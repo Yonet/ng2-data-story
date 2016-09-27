@@ -1,11 +1,10 @@
-.container {
-  width: 100%;
-  border: 1px solid red;
+md-card {
+  float: left;
   height: 50px;
-
+  padding: 0;
 }
-ng-content {
-  display: inline-block;
-  height: 100%;
-  border: 1px solid red;
+
+.mdl-grid {
+  width: 100%;
+  padding-top: 12px;
 }

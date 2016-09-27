@@ -1,4 +1,21 @@
-<app-list-buttons [buttons]="buttons"></app-list-buttons>
-<app-horizontal-bar [data]=data>
-  <div class="bar" *ngFor="let datum of data" background-color="datum.color" width="datum.value" #item>{{datum.color}}</div>
+<button type="button" name="button" (click)="showIdeal=!showIdeal" md-raised-button>Ideal</button>
+<button type="button" name="button" (click)="showGuessed=!showGuessed"  md-raised-button>Guessed</button>
+<button type="button" name="button" (click)="showReal=!showReal" md-raised-button>Actual</button>
+
+<app-horizontal-bar [data]=data *ngIf="showReal">
 </app-horizontal-bar>
+<app-horizontal-bar [data]=data *ngIf="showGuessed">
+</app-horizontal-bar>
+
+<div class="mdl-grid" *ngIf="showIdeal">
+  <md-card *ngFor="let datum of data"
+          [@flyInOut]="'in'"
+          [@datumState]="active"
+          [@income]="grow"
+          [style.backgroundColor]='datum.color'
+          (click)="datum.toggleState()">
+          <p>
+            20%
+          </p>
+  </md-card>
+</div>

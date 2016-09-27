@@ -55,6 +55,32 @@ var animations =
         }))
       ])
     ])
+  ]),
+  'income': trigger('income',[
+    state('grow', style({width: 0, transform: 'scale(1)',  opacity: 0})),
+    transition('void => *', [
+      style({ transform: 'scale(0)', opacity: 0}),
+      group([
+        animate('0.6s 0.1s ease', style({
+          transform: 'scale(1)',
+          width: '*'
+        })),
+        animate('0.3s ease', style({
+          opacity: 1
+        }))
+      ])
+    ]),
+    transition('* => void', [
+      group([
+        animate('0.3s ease', style({
+          transform: 'scale(0)',
+          width: 0
+        })),
+        animate('0.3s 0.2s ease', style({
+          opacity: 0
+        }))
+      ])
+    ])
   ])
 }
 

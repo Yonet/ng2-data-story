@@ -30,7 +30,7 @@ const observablePoverty = Observable.bindCallback(req.csv);
 
 class Data {
   constructor(public name: string = "",
-    public value: number = 0,
+    public value: any,
     public state = 'inactive',
     public color: string = "#462066") {
   }
@@ -46,7 +46,7 @@ let data = [
   { name: "Third quintile", value: 14.833512 },//color: '#FF7A5A' },
   { name: "Fourth quintile", value: 22.8585 },//color: '#00AAA0' },
   { name: "Highest quintile", value: 49.844159},//color: '#8ED2C9' },
-  { name: "Top 1%", value: 40},//color: '#FCF4D9'  },
+  // { name: "Top 1%", value: 40},//color: '#FCF4D9'  },
 ].map(datum => new Data(datum.name, datum.value));
 
 @Injectable()
@@ -61,11 +61,16 @@ export class DataService {
   }
 
   getData() {
+    var total = 0;
+    // let f = d3.format(".1f")
     data.map((d, i) => {
       d.color = this.color(i);
+      total +=d.value;
+      d.value = (d.value ) + '%';
     })
-    console.log(data)
-    return Observable.of(data);
+    console.log(total)
+    return Observable.of(data)
+      .scan((x, y) => x['value'] + y['value']);
   }
 
 

@@ -1,5 +1,18 @@
-.bar {
-  display: inline-block;
-  height: 100%;
-  border: 1px solid red;
+
+md-card {
+  float: left;
+  height: 50px;
+  padding: 0;
+  width: 20%;
+  color: #FCF4D9;
+}
+p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.mdl-grid {
+  margin-top: 12px;
+  width: 100%;
+  border: 1px solid #FCF4D9;
 }

@@ -1,4 +1,11 @@
+<div class="mdl-grid">
+  <md-card *ngFor="let datum of data"
+          [@flyInOut]="'in'"
+          [@datumState]="active"
+          [@income]="grow"
+          [style.backgroundColor]='datum.color'
+          [style.width]='datum.value'
+          (click)="datum.toggleState()">
+  </md-card>
 
-<div class="container">
-  <ng-content></ng-content>
 </div>
