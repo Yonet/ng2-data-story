@@ -19,9 +19,6 @@ export class PovertyComponent implements OnInit {
   private buttons: any;
   private idealData: any;
   private guessData: any;
-  private showReal: boolean = false;
-  private showGuessed: boolean = false;
-  private showIdeal : boolean = false;
   private inc$: any;
   private dec$: any;
   private count$: any;
@@ -29,22 +26,20 @@ export class PovertyComponent implements OnInit {
   constructor(public dataService: DataService) {
     this.dataService.getPovertyData()
       .subscribe((d) => console.log('d ', d));
-    this.buttons = [
-      { name : "Guess", active: true },
-      { name : "Reality", active: false },
-      { name : "Ideal", active: false }];
+
     this.dataService.getData()
       .subscribe((res) => {
         this.data = res;
       })
-      this.dataService.getSwedenData()
-        .subscribe((res) => {
-          this.idealData = res;
-        })
-        this.dataService.getGuessedData()
-          .subscribe((res) => {
-            this.guessData = res;
-          })
+
+    this.dataService.getSwedenData()
+      .subscribe((res) => {
+        this.idealData = res;
+      })
+    this.dataService.getGuessedData()
+      .subscribe((res) => {
+        this.guessData = res;
+      })
 
   }
 
@@ -54,10 +49,10 @@ export class PovertyComponent implements OnInit {
     this.dec$ = new Subject();
 
     this.count$ = this.inc$.mapTo(+1)
-                       .merge(this.dec$.mapTo(-1))
-                       .scan((current, i ) => current + i).startWith(1);
+      .merge(this.dec$.mapTo(-1))
+      .scan((current, i) => current + i).startWith(1);
 
-    this.count$.subscribe((current) =>  this.current = current)
+    this.count$.subscribe((current) => this.current = current)
   }
 
 }

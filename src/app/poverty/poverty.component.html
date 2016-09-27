@@ -25,9 +25,7 @@
   <div class="mdl-grid" *ngIf="current > 0">
     <md-card-title>Percentile</md-card-title>
     <md-card *ngFor="let datum of data" [@flyInOut]="'in'" [@datumState]="active" [@income]="grow" [style.backgroundColor]='datum.color' (click)="datum.toggleState()">
-      <p>
-        20%
-      </p>
+      <p>20%</p>
     </md-card>
   </div>
 </md-card-content>
