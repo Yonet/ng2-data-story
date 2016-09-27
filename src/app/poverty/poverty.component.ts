@@ -25,6 +25,7 @@ export class PovertyComponent implements OnInit {
   private inc$: any;
   private dec$: any;
   private count$: any;
+  private current: number;
   constructor(public dataService: DataService) {
     this.dataService.getPovertyData()
       .subscribe((d) => console.log('d ', d));
@@ -36,6 +37,14 @@ export class PovertyComponent implements OnInit {
       .subscribe((res) => {
         this.data = res;
       })
+      this.dataService.getSwedenData()
+        .subscribe((res) => {
+          this.idealData = res;
+        })
+        this.dataService.getGuessedData()
+          .subscribe((res) => {
+            this.guessData = res;
+          })
 
   }
 
@@ -48,7 +57,7 @@ export class PovertyComponent implements OnInit {
                        .merge(this.dec$.mapTo(-1))
                        .scan((current, i ) => current + i).startWith(1);
 
-    this.count$.subscribe((current) => console.log("current", current))
+    this.count$.subscribe((current) =>  this.current = current)
   }
 
 }

@@ -40,12 +40,30 @@ class Data {
   }
 }
 
+let guessedData = [
+  { name: "Lowest quintile", value: 4 },//color: "#462066" },
+  { name: "Second quintile", value: 6}, //color: '#FFB85F' },
+  { name: "Third quintile", value: 10 },//color: '#FF7A5A' },
+  { name: "Fourth quintile", value: 21 },//color: '#00AAA0' },
+  { name: "Highest quintile", value: 59},//color: '#8ED2C9' },
+  // { name: "Top 1%", value: 40},//color: '#FCF4D9'  },
+].map(datum => new Data(datum.name, datum.value));
+
 let data = [
-  { name: "Lowest quintile", value: 3.4439186 },//color: "#462066" },
-  { name: "Second quintile", value: 9.0199105 }, //color: '#FFB85F' },
-  { name: "Third quintile", value: 14.833512 },//color: '#FF7A5A' },
-  { name: "Fourth quintile", value: 22.8585 },//color: '#00AAA0' },
-  { name: "Highest quintile", value: 49.844159},//color: '#8ED2C9' },
+  { name: "Lowest quintile", value: 0.1 },//color: "#462066" },
+  { name: "Second quintile", value: 0.2}, //color: '#FFB85F' },
+  { name: "Third quintile", value: 4.3},//color: '#FF7A5A' },
+  { name: "Fourth quintile", value: 11.2 },//color: '#00AAA0' },
+  { name: "Highest quintile", value: 84.2},//color: '#8ED2C9' },
+  // { name: "Top 1%", value: 40},//color: '#FCF4D9'  },
+].map(datum => new Data(datum.name, datum.value));
+
+let swedenData = [
+  { name: "Lowest quintile", value: 11 },//color: "#462066" },
+  { name: "Second quintile", value: 21}, //color: '#FFB85F' },
+  { name: "Third quintile", value: 15},//color: '#FF7A5A' },
+  { name: "Fourth quintile", value: 35 },//color: '#00AAA0' },
+  { name: "Highest quintile", value: 18},//color: '#8ED2C9' },
   // { name: "Top 1%", value: 40},//color: '#FCF4D9'  },
 ].map(datum => new Data(datum.name, datum.value));
 
@@ -68,9 +86,32 @@ export class DataService {
       total +=d.value;
       d.value = (d.value ) + '%';
     })
-    console.log(total)
+    console.log(total);
     return Observable.of(data)
-      .scan((x, y) => x['value'] + y['value']);
+  }
+
+  getGuessedData() {
+    var total = 0;
+    // let f = d3.format(".1f")
+    guessedData.map((d, i) => {
+      d.color = this.color(i);
+      total +=d.value;
+      d.value = (d.value ) + '%';
+    })
+    console.log('guess',total);
+    return Observable.of(guessedData);
+  }
+
+  getSwedenData() {
+    var total = 0;
+    // let f = d3.format(".1f")
+    swedenData.map((d, i) => {
+      d.color = this.color(i);
+      total +=d.value;
+      d.value = (d.value ) + '%';
+    })
+    console.log("sweden",total);
+    return Observable.of(swedenData)
   }
 
 
