@@ -1,21 +1,24 @@
-<button type="button" name="button" (click)="showIdeal=!showIdeal" md-raised-button>Ideal</button>
+<!-- <button type="button" name="button" (click)="showIdeal=!showIdeal" md-raised-button>Ideal</button>
 <button type="button" name="button" (click)="showGuessed=!showGuessed"  md-raised-button>Guessed</button>
-<button type="button" name="button" (click)="showReal=!showReal" md-raised-button>Actual</button>
+<button type="button" name="button" (click)="showReal=!showReal" md-raised-button>Actual</button> -->
+<!-- <md-card class="container"> -->
+  <md-card-content>
+    <app-horizontal-bar [data]=data *ngIf="showReal">
+    </app-horizontal-bar>
+    <app-horizontal-bar [data]=data *ngIf="showGuessed">
+    </app-horizontal-bar>
+<!-- *ngIf="showIdeal" -->
+    <div class="mdl-grid" >
+      <md-card *ngFor="let datum of data" [@flyInOut]="'in'" [@datumState]="active" [@income]="grow" [style.backgroundColor]='datum.color' (click)="datum.toggleState()">
+        <p>
+          20%
+        </p>
+      </md-card>
+    </div>
+  </md-card-content>
+  <md-card-actions class="" align="end">
+    <button type="button" name="prev" (click)="dec$.next()" md-raised-button><</button><button type="button" (click)="inc$.next()" name="next" md-raised-button>></button>
+  </md-card-actions>
 
-<app-horizontal-bar [data]=data *ngIf="showReal">
-</app-horizontal-bar>
-<app-horizontal-bar [data]=data *ngIf="showGuessed">
-</app-horizontal-bar>
 
-<div class="mdl-grid" *ngIf="showIdeal">
-  <md-card *ngFor="let datum of data"
-          [@flyInOut]="'in'"
-          [@datumState]="active"
-          [@income]="grow"
-          [style.backgroundColor]='datum.color'
-          (click)="datum.toggleState()">
-          <p>
-            20%
-          </p>
-  </md-card>
-</div>
+<!-- </md-card> -->

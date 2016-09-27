@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable }        from 'rxjs/Rx';
+import { Component, OnInit }    from '@angular/core';
+import { Observable, Subject }  from 'rxjs/Rx';
 
-import { Animations }        from '../animations';
-import { DataService }       from '../data.service';
+import { Animations }           from '../animations';
+import { DataService }          from '../data.service';
 
 @Component({
   selector: 'app-poverty',
@@ -22,6 +22,9 @@ export class PovertyComponent implements OnInit {
   private showReal: boolean = false;
   private showGuessed: boolean = false;
   private showIdeal : boolean = false;
+  private inc$: any;
+  private dec$: any;
+  private count$: any;
   constructor(public dataService: DataService) {
     this.dataService.getPovertyData()
       .subscribe((d) => console.log('d ', d));
@@ -37,7 +40,15 @@ export class PovertyComponent implements OnInit {
   }
 
   ngOnInit() {
+    let click$ = Observable.fromEvent(document.querySelector('button'), 'click');
+    this.inc$ = new Subject();
+    this.dec$ = new Subject();
 
+    this.count$ = this.inc$.mapTo(+1)
+                       .merge(this.dec$.mapTo(-1))
+                       .scan((current, i ) => current + i).startWith(1);
+
+    this.count$.subscribe((current) => console.log("current", current))
   }
 
 }
