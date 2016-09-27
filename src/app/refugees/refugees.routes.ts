@@ -4,7 +4,7 @@ import { RefugeesComponent  }       from './refugees.component';
 
 export const RefugeesRoutes: Route[] = [
   {
-    path: '',
+    path: 'refugees',
     component: RefugeesComponent
   },
 ];

@@ -25,9 +25,9 @@ import * as req from 'd3-request';
 
 var d3: D3;
 var color;
-var observableCsv;
+// var observableCsv;
 const observablePoverty = Observable.bindCallback(req.csv);
-
+const observableCsv = Observable.bindCallback(req.csv);
 class Data {
   constructor(public name: string = "",
     public value: any,
@@ -74,7 +74,7 @@ export class DataService {
   constructor(private http: Http, private d3Service: D3Service ) {
     d3 = d3Service.getD3();
     this.color = d3.scaleOrdinal(d3.schemeCategory20b);
-    observableCsv = Observable.bindCallback(req.csv);
+    // observableCsv = Observable.bindCallback(req.csv);
 
   }
 
@@ -86,7 +86,6 @@ export class DataService {
       total +=d.value;
       d.value = (d.value ) + '%';
     })
-    console.log(total);
     return Observable.of(data)
   }
 
@@ -110,7 +109,6 @@ export class DataService {
       total +=d.value;
       d.value = (d.value ) + '%';
     })
-    console.log("sweden",total);
     return Observable.of(swedenData)
   }
 
@@ -126,8 +124,6 @@ export class DataService {
         return result;
       })
   }
-
-
 
   getPovertyData() {
     return observablePoverty("../assets/povertyData.csv")
@@ -145,6 +141,7 @@ export class DataService {
   }
 
   parseData(data) {
+    console.log("parsing ", data)
     data.map((val, key) => {
       val.color = this.color(key);
       val["Refugee Count"] = +val["Refugee Count"];
@@ -155,6 +152,7 @@ export class DataService {
       val["Population"] = +val["Population"];
       val["Area (km2)"] = +val["Area (km2)"];
     })
+    console.log("parsed ", data)
     return data;
   }
 

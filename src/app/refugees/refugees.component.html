@@ -1,3 +1,11 @@
-<p>
-  refugees works!
-</p>
+
+<h2>Refugees of Syrian Civil War</h2>
+<app-bar [data]="refugeeData" [key]="currentKey"></app-bar>
+<button
+  *ngFor="let key of keys"
+  type="button" name="button"
+  (click)="renderBar(key)"
+  md-button>{{key}}</button>
+<!-- {{refugeeData | json}} -->
+<app-animations [data]="refugeeData">
+</app-animations>

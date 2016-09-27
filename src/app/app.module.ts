@@ -13,18 +13,14 @@ import { PovertyModule }        from './poverty/poverty.module';
 import { RefugeesModule }       from './refugees/refugees.module';
 import { routes }               from './app.routes';
 import { AppComponent }         from './app.component';
-import { AnimationsComponent }  from './animations/animations.component';
 import './core/rxjs-extensions';
 import { SlidesModule }         from './slides/slides.module';
 import { DataService }          from './data.service';
-import { BarComponent }         from './bar/bar.component';
 import { PieComponent }         from './pie/pie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AnimationsComponent,
-    BarComponent,
     PieComponent,
   ],
   imports: [

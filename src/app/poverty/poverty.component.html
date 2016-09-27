@@ -5,7 +5,7 @@
 <md-card-content>
 
   <div class="mdl-grid" *ngIf="current>3">
-    <md-card-title>Actual Distributition of Wealth</md-card-title>
+    <md-card-title >Actual Distributition of Wealth</md-card-title>
     <app-horizontal-bar [data]="data"  [people]="people">
       <img src="../assets/man.png" alt="" *ngFor="let man of people"/>
     </app-horizontal-bar>
@@ -32,6 +32,5 @@
       <img src="../assets/man.png" alt="" *ngFor="let man of people"/>
     <!-- </div> -->
     </md-card>
-    <!-- <img src="../assets/man.png" alt="" *ngFor="let man of people"/> -->
   </div>
 </md-card-content>
