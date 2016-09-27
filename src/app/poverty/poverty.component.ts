@@ -19,17 +19,20 @@ export class PovertyComponent implements OnInit {
       { name : 1, active: true },
       { name : 2, active: false },
       { name : 3, active: false }];
-    this.data = [
-      {name: "Lowest quintile", totalPeople: 10,  totalWealth: 20, income:4825 },
-      {name: "Second quintile", totalPeople: 100, totalWealth: 30, income:24284 },
-      {name: "Third quintile", totalPeople: 100, totalWealth: 40, income:58226 },
-      {name: "Fourth quintile", totalPeople: 100, totalWealth: 50, income:113422 },
-      {name: "Highest quintile", totalPeople: 100, totalWealth: 60, income:292646 },
-      {name: "top 1%", totalPeople: 1, totalWealth: 20}
-    ];
+    this.dataService.getData()
+      .subscribe((res) => this.data = res);
+    // this.data = [
+    //   {name: "Lowest quintile", totalPeople: 10,  totalWealth: 20, income:4825 },
+    //   {name: "Second quintile", totalPeople: 100, totalWealth: 30, income:24284 },
+    //   {name: "Third quintile", totalPeople: 100, totalWealth: 40, income:58226 },
+    //   {name: "Fourth quintile", totalPeople: 100, totalWealth: 50, income:113422 },
+    //   {name: "Highest quintile", totalPeople: 100, totalWealth: 60, income:292646 },
+    //   {name: "top 1%", totalPeople: 1, totalWealth: 20}
+    // ];
   }
 
   ngOnInit() {
+    console.log("d ", this.data)
 
   }
 

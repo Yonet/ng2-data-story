@@ -22,7 +22,7 @@ export class AppComponent {
     this.dataService.getCsvData("../assets/refugees.csv")
       .subscribe((res) => {
         this.refugeeData = res;
-        console.log('this.refugeeData', this.refugeeData);
+        // console.log('this.refugeeData', this.refugeeData);
         // this.keys = Object.keys(this.refugeeData[0]);
       });
     }

@@ -1,3 +1,4 @@
 <app-list-buttons [buttons]="buttons"></app-list-buttons>
 <app-horizontal-bar [data]=data>
+  <div class="bar" *ngFor="let datum of data" background-color="datum.color" width="datum.value" #item>{{datum.color}}</div>
 </app-horizontal-bar>
