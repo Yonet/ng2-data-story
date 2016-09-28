@@ -15,6 +15,7 @@ import { D3Service,
   ScaleOrdinal,
   Transition,
   Selection }         from 'd3-ng2-service';
+
 var d3;
 @Component({
   selector: 'app-bar',
@@ -62,15 +63,15 @@ export class BarComponent implements OnInit {
     this.t = d3.transition()
       .duration(750)
       .ease(d3.easeLinear);
-    this.margin = { top: 40, right: 40, bottom: 40, left: 80 };
+    this.margin = { top: 40, right: 100, bottom: 40, left: 100 };
     this.width = window.innerWidth - this.margin.left - this.margin.right;
-    this.height = 600 - this.margin.top - this.margin.bottom;
+    this.height = 400 - this.margin.top - this.margin.bottom;
     this.xScale = d3.scaleBand()
-    			.range([0, this.width], .1);
+      .range([0, this.width], .1);
     this.yScale = d3.scaleLinear().range([this.height, 0]);
     this.xAxis = d3.axisBottom(this.xScale);
     this.yAxis = d3.axisLeft(this.yScale)
-        .ticks(10);
+      .ticks(10);
   }
 
   buildSVG() {
@@ -82,24 +83,23 @@ export class BarComponent implements OnInit {
       .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
     this.svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + this.height + ")")
-          .call(this.xAxis);
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + this.height + ")")
+      .call(this.xAxis);
 
     this.svg.append("g")
-        .attr("class", "y axis")
-        .call(this.yAxis)
+      .attr("class", "y axis")
+      .call(this.yAxis)
       .append("text")
-        .attr("class", "label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Refugee Count");
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Refugee Count");
   }
 
   populate() {
-    // console.log('.key', this.key)
     this.yScale.domain([0, d3.max(this.data, (d) => d[this.key])])
 
     this.xScale.domain(this.data.map((d) => d["Country"]))
@@ -107,8 +107,8 @@ export class BarComponent implements OnInit {
     let group = this.svg.append('g')
     let bars = group.selectAll('.bar').data(this.data)
     let exit = bars.exit().remove().style("opacity", 1).transition(this.t).style("opacity", 0).attr("height", 0);
-    let entering = bars
-      .enter().append("rect")
+
+    let entering = bars.enter().append("rect")
       .attr("class", "bar")
       .attr("x", (d) => this.xScale(d["Country"]))
       .attr("width", this.xScale.bandwidth())
@@ -117,15 +117,7 @@ export class BarComponent implements OnInit {
       .transition(this.t)
       .style("opacity", 1)
       .attr("height", (d) => (this.height - this.yScale(d[this.key])))
-      .transition(this.t)
       .style("fill", (d, i) => d.color)
-      console.log('bars', bars)
-
-
-      // .style("fill", "grey")
-      // .transition(this.t)
-      // .style("opacity", 0);
-      console.log('exit', exit)
 
   }
 }

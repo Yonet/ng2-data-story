@@ -1,7 +1,8 @@
-
 import { trigger, state, transition, group, style, keyframes, AnimationTransitionEvent, animate } from '@angular/core'
+
 var animations =
-{ 'flyInOut': trigger('flyInOut', [
+{
+  'flyInOut': trigger('flyInOut', [
     state('in', style({transform: 'translateX(0)'})),
     transition('void => *', [
       animate(300, keyframes([//timing: string | number, styles?: AnimationStyleMetadata | AnimationKeyframesSequenceMetadata

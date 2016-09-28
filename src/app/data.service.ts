@@ -6,7 +6,7 @@ import { Http,
          RequestMethod,
          Response }         from '@angular/http';
 import { Observable }       from 'rxjs/Rx';
-// import * as d3              from 'd3';
+
 import { D3Service,
          D3,
          D3DragEvent,
@@ -25,9 +25,9 @@ import * as req from 'd3-request';
 
 var d3: D3;
 var color;
-// var observableCsv;
 const observablePoverty = Observable.bindCallback(req.csv);
 const observableCsv = Observable.bindCallback(req.csv);
+
 class Data {
   constructor(public name: string = "",
     public value: any,
@@ -80,7 +80,6 @@ export class DataService {
 
   getData() {
     var total = 0;
-    // let f = d3.format(".1f")
     data.map((d, i) => {
       d.color = this.color(i);
       total +=d.value;
@@ -91,7 +90,6 @@ export class DataService {
 
   getGuessedData() {
     var total = 0;
-    // let f = d3.format(".1f")
     guessedData.map((d, i) => {
       d.color = this.color(i);
       total +=d.value;
@@ -103,7 +101,6 @@ export class DataService {
 
   getSwedenData() {
     var total = 0;
-    // let f = d3.format(".1f")
     swedenData.map((d, i) => {
       d.color = this.color(i);
       total +=d.value;
